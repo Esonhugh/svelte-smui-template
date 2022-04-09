@@ -4,7 +4,21 @@
 
 ---
 
-# svelte app
+# Template
+
+## Fast Start With Setup.sh
+
+```bash
+bash setup.sh
+```
+
+## Feature of Github Actions
+
+This Project use the **app** branch in **the Repo which use this Template**.
+
+You can disable with delete the `.github` folder.
+
+# Instruction from sveltejs/template project
 
 This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
 
@@ -56,8 +70,11 @@ By default, sirv will only respond to requests that match files in `public`. Thi
 
 If you're building a single-page app (SPA) with multiple routes, sirv needs to be able to respond to requests for *any* path. You can make it so by editing the `"start"` command in package.json:
 
-```js
-"start": "sirv public --single"
+```json
+{ 
+  "other": "...",
+  "start": "sirv public --single"
+}
 ```
 
 ## Using TypeScript
@@ -106,4 +123,13 @@ Then, from within your project folder:
 ```bash
 npm run build
 surge public my-project.surge.sh
+```
+
+### With Cloudflare
+
+```bash
+npm install 
+npm run build
+# or
+bash setup.sh # set output folder as output.
 ```
