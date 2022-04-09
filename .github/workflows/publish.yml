@@ -1,0 +1,33 @@
+name: Generate FontEnd Apps
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: git-checkout
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Prebuild CSS
+        run: npm run prepare
+
+      - name: Build Apps
+        run: npm run build
+
+      - name: Push on another branch
+        uses: s0/git-publish-subdir-action@develop
+        env:
+          REPO: self
+          BRANCH: app # branch to push on github
+          FOLDER: public # assets output folder
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # github auto-generated token no need add anymore
+          MESSAGE: "Action AutoBuild: ({sha}) {msg}" # msg is the commit message
